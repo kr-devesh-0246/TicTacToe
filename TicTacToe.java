@@ -36,37 +36,49 @@ public class TicTacToe {
         }
     }
     static void checkWin(char[][] Array) {
-        // minimise the body length. hint- multiple conditionals have common print statements, then 1. use output formatters and store these strings there. 
+        // minimise the body length. hint- multiple conditionals have common print statements, then
+        // 1. use output formatters and store these strings there. 
         // 2. can make a flag and if flag is true, then print a certain output else ... 
         // For primary diagonal
         if(emptyCells(Array)>=0) { // this is the place of error when task move makes one winner[earlier !=0]
-            if(Array[0][0] == 'X' && Array[1][1] == 'X' && Array[2][2] == 'X') {
-                System.out.println("Hurray! \nPlayer A has won the game.\nPlayer B, better luck next time");
+            if(Array[0][0] == 'X' &&
+               Array[1][1] == 'X' && 
+               Array[2][2] == 'X') {
+                System.out.println("\nPlayer 1 won\nPlayer 2 lost");
                 System.exit(0);
             }
-            if(Array[0][0] == 'O' && Array[1][1] == 'O' && Array[2][2] == 'O') {
-                System.out.println("Hurray! \nPlayer B has won the game.\nPlayer A, better luck next time");
+            if(Array[0][0] == 'O' && 
+               Array[1][1] == 'O' && 
+               Array[2][2] == 'O') {
+                System.out.println("\nPlayer 2 won\nPlayer 2 lost");
                 System.exit(0);
             }
 
             // For secondary diagonal
-            if(Array[2][0] == 'X' &&  Array[1][1] == 'X' && Array[0][2] == 'X'){
-                System.out.println("Hurray! \nPlayer A has won the game.\nPlayer B, better luck next time");
+            if(Array[2][0] == 'X' &&  
+               Array[1][1] == 'X' && 
+               Array[0][2] == 'X') {
+                System.out.println("\nPlayer 1 won\nPlayer 2 lost");
                 System.exit(0);
             }
-            if(Array[2][0] == 'O' &&  Array[1][1] == 'O' && Array[0][2] == 'O'){
-                System.out.println("Hurray! \nPlayer A has won the game.\nPlayer A, better luck next time");
+            if(Array[2][0] == 'O' &&
+               Array[1][1] == 'O' &&
+               Array[0][2] == 'O'){
+                System.out.println("\nPlayer 1 won\nPlayer 2 lost");
                 System.exit(0);
             }
 
             // Horizontal Rows check condition
             for(int i = 0; i < 3; i++) {
-                if(Array[i][0] == 'X' && Array[i][1] == 'X' && Array[i][2] == 'X') {
-                    System.out.println("Hurray! \nPlayer A has won the game.\nPlayer B, better luck next time");
+                if(Array[i][0] == 'X' &&
+                   Array[i][1] == 'X' &&
+                   Array[i][2] == 'X') {
+                    System.out.println("\nPlayer 1 won\nPlayer 2 lost");
                     System.exit(0);   
                 }
-                if(Array[i][0] == 'O' && Array[i][1] == 'O' && Array[i][2] == 'O') {
-                    System.out.println("Hurray! \nPlayer B has won the game.\nPlayer A, better luck next time");
+                if(Array[i][0] == 'O' &&
+                   Array[i][1] == 'O' && Array[i][2] == 'O') {
+                    System.out.println("\nPlayer 2 won\nPlayer 2 lost");
                     System.exit(0);   
                 }
             }
@@ -74,16 +86,16 @@ public class TicTacToe {
             // Vertical columns check conditions
             for(int i = 0; i < 3; i++) {
                 if(Array[0][i] == 'X' && Array[1][i] == 'X' && Array[2][i] == 'X') {
-                    System.out.println("Hurray! \nPlayer A has won the game.\nPlayer B, better luck next time");
+                    System.out.println("\nPlayer 1 won\nPlayer 2 lost");
                     System.exit(0);
                 }
                 if(Array[0][i] == 'O' && Array[1][i] == 'O' && Array[2][i] == 'O') {
-                    System.out.println("Hurray! \nPlayer B has won the game.\nPlayer A, better luck next time");
+                    System.out.println("\nPlayer 2 won\nPlayer 2 lost");
                     System.exit(0);
                 }
             }
         }
-        else {System.out.println("Oops!\nNone of you won the Game\nMatch drawn");}
+        else {System.out.println("Oops!\nMatch drawn");}
     }
     public static void main(String args[]) {
 
@@ -105,7 +117,7 @@ public class TicTacToe {
         Scanner s = new Scanner(System.in); 
         int m, n; // for locating the cell to insert value
         do{
-            if(9-emptyCells(board)%2==0) {
+            if((9-emptyCells(board))%2==0) {
                 System.out.print("\nPlayer 1\nEnter position: ");
                 m = s.nextInt(); n = s.nextInt(); 
             }
@@ -120,7 +132,7 @@ public class TicTacToe {
                     displayBoard(board);
                     checkWin(board);
                 }
-                else {System.out.println("\nOhh!\nThis cell is not empty \nTry for an empty cell"); continue;}
+                else {System.out.println("\nOhh!\nCell already filled \nRetry"); continue;}
 
             }
             else {
@@ -129,7 +141,7 @@ public class TicTacToe {
                     displayBoard(board);
                     checkWin(board);
                 }
-                else {System.out.println("\nOhh!\nThis cell is not empty. \nTry for an empty cell"); continue;}
+                else {System.out.println("\nOhh!\nCell already filled \nRetry"); continue;}
             }
         }while(emptyCells(board)>=0); 
         System.out.println("Still hopeful");// No execution stops before it's execution
