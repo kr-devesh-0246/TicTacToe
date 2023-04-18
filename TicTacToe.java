@@ -1,5 +1,3 @@
-// Birthday for my girlfriend ideapad
-
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -35,7 +33,7 @@ public class TicTacToe {
             System.out.println();
         }
     }
-    static void checkWin(char[][] Array) {
+    static void checkWin(String plyr1, String plyr2, char[][] Array) {
         // minimise the body length. hint- multiple conditionals have common print statements, then
         // 1. use output formatters and store these strings there. 
         // 2. can make a flag and if flag is true, then print a certain output else ... 
@@ -44,13 +42,13 @@ public class TicTacToe {
             if(Array[0][0] == 'X' &&
                Array[1][1] == 'X' && 
                Array[2][2] == 'X') {
-                System.out.println("\nPlayer 1 won\nPlayer 2 lost");
+                System.out.printf("\n%s won\n%s lost", plyr1, plyr2);
                 System.exit(0);
             }
             if(Array[0][0] == 'O' && 
                Array[1][1] == 'O' && 
                Array[2][2] == 'O') {
-                System.out.println("\nPlayer 2 won\nPlayer 2 lost");
+                System.out.println("\n%s won\n%s lost");
                 System.exit(0);
             }
 
@@ -58,13 +56,13 @@ public class TicTacToe {
             if(Array[2][0] == 'X' &&  
                Array[1][1] == 'X' && 
                Array[0][2] == 'X') {
-                System.out.println("\nPlayer 1 won\nPlayer 2 lost");
+                System.out.printf("\n%s won\n%s lost",plyr1,plyr2);
                 System.exit(0);
             }
             if(Array[2][0] == 'O' &&
                Array[1][1] == 'O' &&
                Array[0][2] == 'O'){
-                System.out.println("\nPlayer 1 won\nPlayer 2 lost");
+                System.out.printf("\n%s won\n%s lost",plyr1,plyr2);
                 System.exit(0);
             }
 
@@ -73,12 +71,12 @@ public class TicTacToe {
                 if(Array[i][0] == 'X' &&
                    Array[i][1] == 'X' &&
                    Array[i][2] == 'X') {
-                    System.out.println("\nPlayer 1 won\nPlayer 2 lost");
+                    System.out.printf("\n%s won\n%s lost",plyr1,plyr2);
                     System.exit(0);   
                 }
                 if(Array[i][0] == 'O' &&
                    Array[i][1] == 'O' && Array[i][2] == 'O') {
-                    System.out.println("\nPlayer 2 won\nPlayer 2 lost");
+                    System.out.println("\n%s won\n%s lost");
                     System.exit(0);   
                 }
             }
@@ -86,11 +84,11 @@ public class TicTacToe {
             // Vertical columns check conditions
             for(int i = 0; i < 3; i++) {
                 if(Array[0][i] == 'X' && Array[1][i] == 'X' && Array[2][i] == 'X') {
-                    System.out.println("\nPlayer 1 won\nPlayer 2 lost");
+                    System.out.printf("\n%s won\n%s lost",plyr1,plyr2);
                     System.exit(0);
                 }
                 if(Array[0][i] == 'O' && Array[1][i] == 'O' && Array[2][i] == 'O') {
-                    System.out.println("\nPlayer 2 won\nPlayer 2 lost");
+                    System.out.println("\n%s won\n%s lost");
                     System.exit(0);
                 }
             }
@@ -115,6 +113,13 @@ public class TicTacToe {
         displayBoard(board);
 
         Scanner s = new Scanner(System.in); 
+
+        // Asking player names
+        System.out.print("Player 1: ");
+        String player1 = s.nextLine();
+        System.out.print("Player 2: ");
+        String player2 = s.nextLine(); 
+
         int m, n; // for locating the cell to insert value
         do{
             if((9-emptyCells(board))%2==0) {
@@ -130,7 +135,7 @@ public class TicTacToe {
                 if(board[m][n]=='~') {
                     board[m][n] = 'X';
                     displayBoard(board);
-                    checkWin(board);
+                    checkWin(player1,player2,board);
                 }
                 else {System.out.println("\nOhh!\nCell already filled \nRetry"); continue;}
 
@@ -139,7 +144,7 @@ public class TicTacToe {
                 if(board[m][n]=='~') {
                     board[m][n] = 'O';
                     displayBoard(board);
-                    checkWin(board);
+                    checkWin(player1,player2,board);
                 }
                 else {System.out.println("\nOhh!\nCell already filled \nRetry"); continue;}
             }
